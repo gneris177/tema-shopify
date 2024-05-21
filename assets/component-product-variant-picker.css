@@ -2,6 +2,19 @@ variant-selects {
   display: block;
 }
 
+variant-selects .product-form__input .form__label {
+  color: #000;
+  font-family: avenir_heavy;
+  line-height: 1.2;
+  letter-spacing: -0.06em;
+  font-size: 18px;
+}
+@media (min-width: 960px) {
+  variant-selects .product-form__input .form__label {
+    font-size: 20px;
+  }
+}
+
 .product--no-media .product-form__input--pill,
 .product--no-media .product-form__input--swatch,
 .product--no-media .product-form__input--dropdown {

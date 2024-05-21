@@ -2325,12 +2325,12 @@ product-info .loading__spinner:not(.hidden) ~ *,
   border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
 }
 
-.header {
+/* .header {
   display: grid;
   grid-template-areas: 'left-icons heading icons';
   grid-template-columns: 1fr 2fr 1fr;
   align-items: center;
-}
+} */
 
 @media screen and (max-width: 749px) {
   .header--has-app {
@@ -2344,7 +2344,7 @@ product-info .loading__spinner:not(.hidden) ~ *,
   }
 
   .header--top-left,
-  .header--middle-left:not(.header--has-menu) {
+  .                   :not(.header--has-menu) {
     grid-template-areas:
       'heading icons'
       'navigation navigation';
@@ -2437,11 +2437,6 @@ product-info .loading__spinner:not(.hidden) ~ *,
 }
 
 @media screen and (max-width: 989px) {
-  .header__heading,
-  .header__heading-link {
-    text-align: center;
-  }
-
   .header--mobile-left .header__heading,
   .header--mobile-left .header__heading-link {
     text-align: left;

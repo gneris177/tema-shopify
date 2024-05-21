@@ -1,0 +1,380 @@
+<section class="jss71">
+  <div class="jss69">
+    <div class="jss68"><img src="https://www.jouse.com.br/static/img/common/icon/icon_package.svg" alt="Ícone pacote" /></div>
+    <div class="jss72">
+      <div class="jss41 jss50 jss54">Troca ou devolução grátis</div>
+      <div class="jss40 jss50 jss54 jss67">Fácil e sem burocracia</div>
+    </div>
+  </div>
+  <div class="jss69">
+    <div class="jss68"><img src="https://www.jouse.com.br/static/img/common/icon/icon_check.svg" alt="Ícone garantia" /></div>
+    <div class="jss72">
+      <div class="jss41 jss50 jss54">Garantia de um ano</div>
+      <div class="jss40 jss50 jss54 jss67">Ative quando precisar</div>
+    </div>
+  </div>
+  <div class="jss69">
+    <div class="jss68"><img src="https://www.jouse.com.br/static/img/common/icon/icon_chat_bubble.svg" alt="Ícone balão de conversa" /></div>
+    <div class="jss72">
+      <div class="jss41 jss50 jss54">Suporte online</div>
+      <div class="jss40 jss50 jss54 jss67"><a class="jss14 jss70" href="/contato/">Fale com a Jouse ›</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="jss77">
+  <section class="Paper-root accordion-root jss79 Paper-elevation0">
+    <div class="button-base-root accordion-summary-root jss81" role="button" onclick="toggleAccordion(0)">
+      <div class="accordion-summary-content jss82">
+        <img class="jss75" src="https://www.jouse.com.br/static/img/common/icon/icon_magnifying_glass.svg" alt="Ícone de uma lupa" />
+        <div>
+          <h3 class="jss41 jss46 jss54">Introdução</h3>
+          <h4 class="jss40 jss49 jss54 jss73">Conheça a Jouse Série 1</h4>
+        </div>
+      </div>
+      <div class="button-base-root icon-button-root accordion-summary-expandIcon jss83 icon-button-edgeEnd" aria-disabled="false" aria-hidden="true">
+        <span class="icon-button-label">
+          <img class="jss74" src="https://www.jouse.com.br/static/img/common/icon/icon_plus_sign-gray.svg" />
+        </span>
+      </div>
+    </div>
+
+    <div class="accordion-content collapse-hidden" id="accordion-0">
+      <div class="collapse-wrapper">
+        <div class="collapse-wrapperInner">
+          <div role="region">
+            <div class="MuiAccordionDetails-root jss84">
+              <div style="width:100%">
+                <div class="jss16 jss76">
+                  {% assign sections = product.description | split: "#secção" %}
+                  {% for section in sections %}
+                  {% assign lines = section | split: "**" %}
+                  {% if lines.size > 0 %}
+                  <section class="jss85">
+                    <div class="jss86">
+                      {% for line in lines %}
+                      {% if line.size > 0 %}
+                      {% if line contains "titulo:" %}
+                      <h2 class="jss41 jss44 jss54">{{ line | remove: "titulo:" }}</h2>
+                      {% elsif line contains "legenda:" %}
+                      <h3 class="jss40 jss46 jss54">{{ line | remove: "legenda:" }}</h3>
+                      {% elsif line contains "texto:" %}
+                      <p class="jss40 jss47 jss54 jss87">{{ line | remove: "texto:" }}</p>
+                      {% elsif line contains "imagem-baixo:" %}
+                      {% assign line = "imagem-baixo:123" %}
+                      {% assign number = line | split: ":" | last | strip | plus: -1 %}
+                      <picture class="jss65 jss367">
+                        <source media="(min-width: 600px)" srcset="{{ product.images[number] | image_url }}">
+                        <img alt="Carteira Jouse Série 1" src="{{ product.images[number] | image_url }}">
+                      </picture>
+                      {% endif %}
+                      {% endif %}
+                      {% endfor %}
+                    </div>
+                  </section>
+                  {% endif %}
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="Paper-root accordion-root jss79 Paper-elevation0">
+    <div class="button-base-root accordion-summary-root jss81" role="button" onclick="toggleAccordion(1)">
+      <div class="accordion-summary-content jss82">
+        <img class="jss75" src="https://www.jouse.com.br/static/img/common/icon/icon_magnifying_glass.svg" alt="Ícone de uma lupa" />
+        <div>
+          <h3 class="jss41 jss46 jss54">Stories dos usuários</h3>
+          <h4 class="jss40 jss49 jss54 jss73">Publicados no Instagram</h4>
+        </div>
+      </div>
+      <div class="button-base-root icon-button-root accordion-summary-expandIcon jss83 icon-button-edgeEnd" aria-disabled="false" aria-hidden="true">
+        <span class="icon-button-label">
+          <img class="jss74" src="https://www.jouse.com.br/static/img/common/icon/icon_plus_sign-gray.svg" />
+        </span>
+      </div>
+    </div>
+
+    <div class="accordion-content collapse-hidden" id="accordion-1">
+      <div class="collapse-wrapper">
+        <div class="collapse-wrapperInner">
+          <div role="region">
+            <div class="accordion-details-root jss84">
+              <div class="jss165">
+                <div class="jss157">
+                  <div class="jss151"><button class="jss152 jss153"><img class="jss149 jss150"
+                        src="https://www.jouse.com.br/static/img/common/icon/icon_chevron-gray.svg" alt="Chevron esquerdo"></button></div>
+                  <div class="jss148">
+                    {% assign start_index = product.images.size | minus: 4 %}
+                    {% if start_index < 0 %} {% assign start_index=0 %} {% endif %} {% assign end_index=product.images.size | minus: 1 %} {% for i in
+                      (start_index..end_index) %} {% assign image=product.images[i] %} <div class="jss159"><img alt="imagem produto"
+                        src="{{ image | image_url }}" class="jss158"></div>
+                  {% endfor %}
+                </div>
+                <div class="jss151"><button class="jss152 jss154"><img class="jss149"
+                      src="https://www.jouse.com.br/static/img/common/icon/icon_chevron-gray.svg" alt="Chevron direito"></button></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <section class="Paper-root accordion-root jss79 Paper-elevation0">
+    <div class="button-base-root accordion-summary-root jss81" role="button" onclick="toggleAccordion(2)">
+      <div class="accordion-summary-content jss82">
+        <img class="jss75" src="https://www.jouse.com.br/static/img/common/icon/icon_magnifying_glass.svg" alt="Ícone de uma lupa" />
+        <div>
+          <h3 class="jss41 jss46 jss54">Avaliações dos usuários</h3>
+          <h4 class="jss40 jss49 jss54 jss73">Publicadas no Facebook</h4>
+        </div>
+      </div>
+      <div class="button-base-root icon-button-root accordion-summary-expandIcon jss83 icon-button-edgeEnd" aria-disabled="false" aria-hidden="true">
+        <span class="icon-button-label">
+          <img class="jss74" src="https://www.jouse.com.br/static/img/common/icon/icon_plus_sign-gray.svg" />
+        </span>
+      </div>
+    </div>
+
+    <div class="accordion-content collapse-hidden" id="accordion-2">
+      <div class="collapse-wrapper">
+        <div class="collapse-wrapperInner">
+          <div role="region">
+            <div class="accordion-details-root jss84">
+              <div class="jss172">
+                <div class="jss169">
+                  <div class="jss170"><img src="https://www.jouse.com.br/static/img/common/star.svg" class="jss173"><img
+                      src="https://www.jouse.com.br/static/img/common/star.svg" class="jss173"><img src="https://www.jouse.com.br/static/img/common/star.svg"
+                      class="jss173"><img src="https://www.jouse.com.br/static/img/common/star.svg" class="jss173"><img
+                      src="https://www.jouse.com.br/static/img/common/star.svg" class="jss173">
+                    <div class="jss171">
+                      <div class="jss41 jss50 jss54">Nota 5,0 de 5,0</div>
+                      <div class="jss40 jss50 jss54">Mais de 2,8 mil avaliações</div>
+                      <div class="jss40 jss50 jss54">
+                        <a href="https://www.facebook.com/Jouse/reviews" target="_blank" class="jss168">Acesse todas as avaliações ›
+                      </a></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="jss166" id="container-feedbacks">
+                  <div id="btn-more-feed" class="jss40 jss50 jss54 jss167" onClick="carregarFeedbacks()">
+                    Carregar mais avaliações ›
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="Paper-root accordion-root jss79 Paper-elevation0">
+    <div class="button-base-root accordion-summary-root jss81" role="button" onclick="toggleAccordion(3)">
+      <div class="accordion-summary-content jss82">
+        <img class="jss75" src="https://www.jouse.com.br/static/img/common/icon/icon_magnifying_glass.svg" alt="Ícone de uma lupa" />
+        <div>
+          <h3 class="jss41 jss46 jss54">Perguntas frequentes</h3>
+          <h4 class="jss40 jss49 jss54 jss73">Sua dúvida pode estar aqui</h4>
+        </div>
+      </div>
+      <div class="button-base-root icon-button-root accordion-summary-expandIcon jss83 icon-button-edgeEnd" aria-disabled="false" aria-hidden="true">
+        <span class="icon-button-label">
+          <img class="jss74" src="https://www.jouse.com.br/static/img/common/icon/icon_plus_sign-gray.svg" />
+        </span>
+      </div>
+    </div>
+    <div class="accordion-content collapse-hidden" id="accordion-2">
+      <div class="collapse-wrapper">
+        <div class="collapse-wrapperInner">
+          <div role="region">
+            <div class="MuiAccordionDetails-root jss84">
+              <h1>ok3</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+
+<div role="presentation" class="jss757" style="position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1300;
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.85);
+  ">
+  <div aria-hidden="true" style="z-index: -1; position: fixed; inset: 0px; -webkit-tap-highlight-color: transparent;"></div>
+  <div tabindex="0" data-test="sentinelStart"></div>
+  <div class="jss758" tabindex="-1">
+    <div class="jss759" style="width: 336.375px; height: 598px;">
+      <div class="jss760">
+        <button class="jss752"><img class="jss753" src="/static/img/common/icon/icon_x.svg" alt="Ícone de fechar"></button>
+      </div>
+      <div style="display: flex; flex-direction: column; background: rgb(17, 17, 17); position: relative; user-select: none; border-radius: 12px; overflow: hidden; width: 100%; height: 100%;">
+        <div style="display: flex; justify-content: center; max-width: 100%; flex-wrap: nowrap; position: absolute; width: 98%; padding: 7px 5px 5px; align-self: center; z-index: 1001; filter: drop-shadow(rgb(34, 34, 34) 0px 1px 8px); transition: opacity 400m s ease-in-out 0s; opacity: 1;">
+          <div style="height: 2px; max-width: 100%; background: rgb(85, 85, 85); margin: 1px; border-radius: 2px; backface-visibility: hidden; width: 4.54545%;">
+            <div style="background: rgb(255, 255, 255); height: 100%; max-width: 100%; border-radius: 2px; transform-origin: left center; backface-visibility: hidden; perspective: 1000px; width: 100%;"></div>
+          </div>
+          <div style="height: 2px; max-width: 100%; background: rgb(85, 85, 85); margin: 1px; border-radius: 2px; backface-visibility: hidden; width: 4.54545%;">
+            <div style="background: rgb(255, 255, 255); height: 100%; max-width: 100%; border-radius: 2px; transform-origin: left center; backface-visibility: hidden; perspective: 1000px; width: 100%;"></div>
+          </div>
+          <div style="height: 2px; max-width: 100%; background: rgb(85, 85, 85); margin: 1px; border-radius: 2px; backface-visibility: hidden; width: 4.54545%;">
+            <div style="background: rgb(255, 255, 255); height: 100%; max-width: 100%; border-radius: 2px; transform-origin: left center; backface-visibility: hidden; perspective: 1000px; width: 100%;"></div>
+          </div>
+          <div style="height: 2px; max-width: 100%; background: rgb(85, 85, 85); margin: 1px; border-radius: 2px; backface-visibility: hidden; width: 4.54545%;">
+            <div style="background: rgb(255, 255, 255); height: 100%; max-width: 100%; border-radius: 2px; transform-origin: left center; backface-visibility: hidden; perspective: 1000px; width: 100%;"></div>
+          </div>
+          <div style="height: 2px; max-width: 100%; background: rgb(85, 85, 85); margin: 1px; border-radius: 2px; backface-visibility: hidden; width: 4.54545%;">
+            <div style="background: rgb(255, 255, 255); height: 100%; max-width: 100%; border-radius: 2px; transform-origin: left center; backface-visibility: hidden; perspective: 1000px; width: 100%;"></div>
+          </div>
+          <div style="height: 2px; max-width: 100%; background: rgb(85, 85, 85); margin: 1px; border-radius: 2px; backface-visibility: hidden; width: 4.54545%;">
+            <div style="background: rgb(255, 255, 255); height: 100%; max-width: 100%; border-radius: 2px; transform-origin: left center; backface-visibility: hidden; perspective: 1000px; width: 100%;"></div>
+          </div>
+          <div style="height: 2px; max-width: 100%; background: rgb(85, 85, 85); margin: 1px; border-radius: 2px; backface-visibility: hidden; width: 4.54545%;">
+            <div style="background: rgb(255, 255, 255); height: 100%; max-width: 100%; border-radius: 2px; transform-origin: left center; backface-visibility: hidden; perspective: 1000px; width: 100%;"></div>
+          </div>
+          <div style="height: 2px; max-width: 100%; background: rgb(85, 85, 85); margin: 1px; border-radius: 2px; backface-visibility: hidden; width: 4.54545%;">
+            <div style="background: rgb(255, 255, 255); height: 100%; max-width: 100%; border-radius: 2px; transform-origin: left center; backface-visibility: hidden; perspective: 1000px; width: 100%;"></div>
+          </div>
+          <div style="height: 2px; max-width: 100%; background: rgb(85, 85, 85); margin: 1px; border-radius: 2px; backface-visibility: hidden; width: 4.54545%;">
+            <div style="background: rgb(255, 255, 255); height: 100%; max-width: 100%; border-radius: 2px; transform-origin: left center; backface-visibility: hidden; perspective: 1000px; width: 100%;"></div>
+          </div>
+          <div style="height: 2px; max-width: 100%; background: rgb(85, 85, 85); margin: 1px; border-radius: 2px; backface-visibility: hidden; width: 4.54545%;">
+            <div style="background: rgb(255, 255, 255); height: 100%; max-width: 100%; border-radius: 2px; transform-origin: left center; backface-visibility: hidden; perspective: 1000px; width: 100%;"></div>
+          </div>
+          <div style="height: 2px; max-width: 100%; background: rgb(85, 85, 85); margin: 1px; border-radius: 2px; backface-visibility: hidden; width: 4.54545%;">
+            <div style="background: rgb(255, 255, 255); height: 100%; max-width: 100%; border-radius: 2px; transform-origin: left center; backface-visibility: hidden; perspective: 1000px; width: 100%;"></div>
+          </div>
+          <div style="height: 2px; max-width: 100%; background: rgb(85, 85, 85); margin: 1px; border-radius: 2px; backface-visibility: hidden; width: 4.54545%;">
+            <div style="background: rgb(255, 255, 255); height: 100%; max-width: 100%; border-radius: 2px; transform-origin: left center; backface-visibility: hidden; perspective: 1000px; width: 100%;"></div>
+          </div>
+          <div style="height: 2px; max-width: 100%; background: rgb(85, 85, 85); margin: 1px; border-radius: 2px; backface-visibility: hidden; width: 4.54545%;">
+            <div style="background: rgb(255, 255, 255); height: 100%; max-width: 100%; border-radius: 2px; transform-origin: left center; backface-visibility: hidden; perspective: 1000px; width: 100%;"></div>
+          </div>
+          <div style="height: 2px; max-width: 100%; background: rgb(85, 85, 85); margin: 1px; border-radius: 2px; backface-visibility: hidden; width: 4.54545%;">
+            <div style="background: rgb(255, 255, 255); height: 100%; max-width: 100%; border-radius: 2px; transform-origin: left center; backface-visibility: hidden; perspective: 1000px; width: 100%;"></div>
+          </div>
+          <div style="height: 2px; max-width: 100%; background: rgb(85, 85, 85); margin: 1px; border-radius: 2px; backface-visibility: hidden; width: 4.54545%;">
+            <div style="background: rgb(255, 255, 255); height: 100%; max-width: 100%; border-radius: 2px; transform-origin: left center; backface-visibility: hidden; perspective: 1000px; width: 100%;"></div>
+          </div>
+          <div style="height: 2px; max-width: 100%; background: rgb(85, 85, 85); margin: 1px; border-radius: 2px; backface-visibility: hidden; width: 4.54545%;">
+            <div style="background: rgb(255, 255, 255); height: 100%; max-width: 100%; border-radius: 2px; transform-origin: left center; backface-visibility: hidden; perspective: 1000px; width: 100%;"></div>
+          </div>
+          <div style="height: 2px; max-width: 100%; background: rgb(85, 85, 85); margin: 1px; border-radius: 2px; backface-visibility: hidden; width: 4.54545%;">
+            <div style="background: rgb(255, 255, 255); height: 100%; max-width: 100%; border-radius: 2px; transform-origin: left center; backface-visibility: hidden; perspective: 1000px; transform: scaleX(0.5523);"></div>
+          </div>
+        </div>
+        <div style="display: flex; position: relative; overflow: hidden; align-items: center; width: 100%; height: 100%;">
+          <div style="height: 100%; width: 100%;"><img src="/static/img/product/stories/22.jpg" style="width: auto; max-width: 100%; max-height: 100%; margin: auto;" alt="22"></div>
+          <div style="position: absolute; left: 12px; top: 20px; z-index: 19;">
+            <div style="display: flex; align-items: center;">
+              <p style="font-size: 1rem; color: rgba(255, 255, 255, 0.9); margin: 0px 0px 2px;"></p>
+              <p style="font-size: 0.6rem; color: rgba(255, 255, 255, 0.8); margin: 0px;"></p>
+            </div>
+          </div>
+        </div>
+        <div style="position: absolute; height: inherit; width: inherit; display: flex;">
+          <div style="width: 50%; z-index: 999;"></div>
+          <div style="width: 50%; z-index: 999;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div tabindex="0" data-test="sentinelEnd"></div>
+</div>
+
+<script>
+  const toggleAccordion = (id) => {
+    const accordionContent = document.querySelector('#accordion-' + id);
+    accordionContent.classList.toggle('collapse-hidden');
+  };
+
+  const peoples = [
+    { nome: "Ana Silva", sexo: "female", local: "Porto Alegre, RS" },
+    { nome: "Bruno Oliveira", sexo: "male", local: "São Paulo, SP" },
+    { nome: "Carlos Souza", sexo: "male", local: "Rio de Janeiro, RJ" },
+    { nome: "Daniela Lima", sexo: "female", local: "Belo Horizonte, MG" },
+    { nome: "Eduardo Costa", sexo: "male", local: "Curitiba, PR" },
+    { nome: "Fernanda Alves", sexo: "female", local: "Recife, PE" },
+    { nome: "Gabriel Pereira", sexo: "male", local: "Fortaleza, CE" },
+    { nome: "Helena Rodrigues", sexo: "female", local: "Salvador, BA" },
+    { nome: "Igor Fernandes", sexo: "male", local: "Florianópolis, SC" },
+    { nome: "Julia Martins", sexo: "female", local: "Manaus, AM" },
+    { nome: "Kleber Santos", sexo: "male", local: "Goiânia, GO" },
+    { nome: "Larissa Almeida", sexo: "female", local: "Belém, PA" },
+    { nome: "Marcelo Ferreira", sexo: "male", local: "Vitória, ES" },
+    { nome: "Nathalia Barbosa", sexo: "female", local: "Campo Grande, MS" },
+    { nome: "Otavio Ribeiro", sexo: "male", local: "Maceió, AL" },
+    { nome: "Paula Melo", sexo: "female", local: "Natal, RN" },
+    { nome: "Quirino Gomes", sexo: "male", local: "Teresina, PI" },
+    { nome: "Renata Dias", sexo: "female", local: "João Pessoa, PB" },
+    { nome: "Sandro Batista", sexo: "male", local: "Aracaju, SE" },
+    { nome: "Tatiane Carvalho", sexo: "female", local: "Cuiabá, MT" },
+    { nome: "Ubirajara Araujo", sexo: "male", local: "Palmas, TO" },
+    { nome: "Vanessa Pires", sexo: "female", local: "Rio Branco, AC" },
+    { nome: "Walter Cunha", sexo: "male", local: "Macapá, AP" },
+    { nome: "Ximena Matos", sexo: "female", local: "Porto Velho, RO" },
+    { nome: "Yuri Figueiredo", sexo: "male", local: "Boa Vista, RR" },
+    { nome: "Zilda Teixeira", sexo: "female", local: "São Luís, MA" },
+    { nome: "Aline Moreira", sexo: "female", local: "Santos, SP" },
+    { nome: "Bruna Nascimento", sexo: "female", local: "Uberlândia, MG" },
+    { nome: "Caio Souza", sexo: "male", local: "Ribeirão Preto, SP" },
+    { nome: "Débora Rocha", sexo: "female", local: "Londrina, PR" }
+  ];
+
+  const containerFeedbacks = document.querySelector("#container-feedbacks");
+  const feedbacks = [];
+  let indexFeedback;
+  let regexComentario = /comentário:\s*(.*?)\*\*/gs;
+  let match;
+
+  while (match = regexComentario.exec(`{{product.description}}`)) {
+    feedbacks.push(match[1]);
+  }
+
+  function carregarFeedbacks() {
+    const maxIndex = Math.min(indexFeedback + 4, feedbacks.length);
+    for (let i = indexFeedback; i < maxIndex; i++) {
+      const random = Math.floor(Math.random() * 10) + 1;
+      const random2 = Math.floor(Math.random() * 60) + 1;
+
+      containerFeedbacks.innerHTML += `
+        <div class="jss178">
+          <div class="jss175">
+            <div class="jss176">
+              <img 
+                style="width: 40px; height: 40px"
+                src="https://xsgames.co/randomusers/assets/avatars/${peoples[i + random].sexo}/${random2}.jpg" 
+                alt="Foto de perfil ${peoples[random + i].nome}"
+              >
+            </div>
+            <div class="jss177">
+              <div class="jss41 jss50 jss54">${peoples[random + i].nome}</div>
+              <div class="jss40 jss50 jss54 jss174">${peoples[random + i].local}</div>
+            </div>
+          </div>
+          <p class="jss40 jss48 jss54">${feedbacks[i]}</p>
+        </div>
+      `;
+    }
+
+    indexFeedback = maxIndex;
+
+    if (indexFeedback >= feedbacks.length) {
+      document.getElementById('btn-more-feed').style.display = "none";
+    }
+  }
+</script>
