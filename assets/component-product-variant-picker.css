@@ -1,4 +1,5 @@
 variant-selects {
+  margin-top: 20px;
   display: block;
 }
 
@@ -71,21 +72,27 @@ variant-selects .product-form__input .form__label {
 
 /* Custom styles for Pill display type */
 .product-form__input--pill input[type='radio'] + label {
-  border: var(--variant-pills-border-width) solid rgba(var(--color-foreground), var(--variant-pills-border-opacity));
-  background-color: rgb(var(--color-background));
-  color: rgba(var(--color-foreground));
-  border-radius: var(--variant-pills-radius);
-  color: rgb(var(--color-foreground));
   display: inline-block;
   margin: 0.7rem 0.5rem 0.2rem 0;
-  padding: 1rem 2rem;
-  font-size: 1.4rem;
   letter-spacing: 0.1rem;
   line-height: 1;
   text-align: center;
   transition: border var(--duration-short) ease;
   cursor: pointer;
   position: relative;
+  color: #cccccc;
+  border: 1px solid;
+  cursor: pointer;
+  outline: none;
+  padding: 2px 0 0;
+  transition: all 175ms ease-in-out;
+  border-color: #cccccc;
+  margin-right: 8px;
+  border-radius: 24px;
+  background-color: #fff;
+  font-size: 15px;
+  padding: 12px 2rem;
+  margin-bottom: 12px;
 }
 
 .product-form__input--pill input[type='radio'] + label:before {
@@ -106,8 +113,8 @@ variant-selects .product-form__input .form__label {
 }
 
 .product-form__input--pill input[type='radio']:checked + label {
-  background-color: rgb(var(--color-foreground));
-  color: rgb(var(--color-background));
+  color: #000;
+  border-color: #000;
 }
 
 @media screen and (forced-colors: active) {

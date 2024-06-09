@@ -1,6 +1,9 @@
 cart-items .title-wrapper-with-link {
   margin-top: 0;
+  margin-bottom: 8px;
 }
+
+.cart-items {}
 
 .cart-items td,
 .cart-items th {
@@ -39,6 +42,8 @@ cart-items .title-wrapper-with-link {
 .cart-item__image {
   height: auto;
   max-width: calc(10rem / var(--font-body-scale));
+  width: 80px;
+  height: 80px;
 }
 
 @media screen and (min-width: 750px) {
@@ -58,7 +63,7 @@ cart-items .title-wrapper-with-link {
 }
 
 .cart-item__details > * + * {
-  margin-top: 0.6rem;
+  /* margin-top: 0.6rem; */
 }
 
 .cart-item__media {
@@ -79,6 +84,12 @@ cart-items .title-wrapper-with-link {
 .cart-item__name {
   text-decoration: none;
   display: block;
+  margin: 0;
+  padding: 0;
+  font-family: avenir_heavy;
+  font-weight: normal;
+  line-height: 1.2;
+  letter-spacing: -0.06em;
 }
 
 .cart-item__name:hover {
@@ -110,21 +121,16 @@ cart-items .title-wrapper-with-link {
 }
 
 .product-option {
-  font-size: 1.4rem;
+  /* font-size: 1.4rem;
   word-break: break-word;
-  line-height: calc(1 + 0.5 / var(--font-body-scale));
+  line-height: calc(1 + 0.5 / var(--font-body-scale)); */
+  color: #999999;
+  
 }
 
 .cart-item cart-remove-button {
   display: flex;
   margin-left: 1rem;
-}
-
-@media screen and (min-width: 750px) and (max-width: 989px) {
-  .cart-item cart-remove-button {
-    width: 4.5rem;
-    height: 4.5rem;
-  }
 }
 
 cart-remove-button .button {
@@ -203,7 +209,7 @@ cart-remove-button .icon-remove {
 }
 
 .product-option + .product-option {
-  margin-top: 0.4rem;
+  margin-top: 0 !important;
 }
 
 .product-option * {
@@ -215,7 +221,6 @@ cart-remove-button .icon-remove {
   text-transform: uppercase;
 }
 
-@media screen and (max-width: 749px) {
   .cart-items,
   .cart-items thead,
   .cart-items tbody {
@@ -232,9 +237,10 @@ cart-remove-button .icon-remove {
 
   .cart-item {
     display: grid;
-    grid-template: repeat(2, auto) / repeat(4, 1fr);
-    gap: 1.5rem;
-    margin-bottom: 3.5rem;
+    grid-template-rows: repeat(2, auto);
+    grid-template-columns: 120px 1fr 1fr;    
+    /* gap: 1.5rem; */
+    /* margin-bottom: 3.5rem; */
   }
 
   .cart-item:last-child {
@@ -243,6 +249,8 @@ cart-remove-button .icon-remove {
 
   .cart-item__media {
     grid-row: 1 / 3;
+    max-height: 120px;
+    max-height: 120px;
   }
 
   .cart-item__details {
@@ -250,7 +258,9 @@ cart-remove-button .icon-remove {
   }
 
   .cart-item__quantity {
-    grid-column: 2 / 5;
+    grid-column: 1 / 5;
+    display: flex;
+    justify-content: space-between;
   }
 
   .cart-item__quantity-wrapper {
@@ -262,9 +272,8 @@ cart-remove-button .icon-remove {
     align-items: flex-start;
     justify-content: flex-end;
   }
-}
 
-@media screen and (min-width: 750px) {
+/* @media screen and (min-width: 750px) {
   .cart-items {
     border-spacing: 0;
     border-collapse: separate;
@@ -288,10 +297,6 @@ cart-remove-button .icon-remove {
   .cart-items td {
     vertical-align: top;
     padding-top: 4rem;
-  }
-
-  .cart-item {
-    display: table-row;
   }
 
   .cart-item > td + td {
@@ -351,5 +356,99 @@ cart-remove-button .icon-remove {
 @media screen and (max-width: 989px) {
   .cart-items .quantity-popover__info-button {
     padding-left: 0;
+  }
+} */
+
+.jss430 {
+  display: flex;
+  align-items: flex-end;
+  padding-top: 16px;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.jss423:first-child {
+  margin-top: 0;
+}
+
+.jss423 {
+  display: flex;
+  margin-top: 4px;
+  align-items: center;
+}
+
+.jss424 {
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+}
+
+.jss431 {
+  color: #007aff;
+}
+
+.jss80 {
+  text-align: inherit;
+}
+
+
+.jss76 {
+  font-size: 15px;
+}
+
+.jss66 {
+  margin: 0;
+  padding: 0;
+  font-family: avenir_book;
+  font-weight: normal;
+  line-height: 1.2;
+  letter-spacing: -0.040em;
+}
+
+.jss423 {
+  display: flex;
+  margin-top: 4px;
+  align-items: center;
+}
+
+.jss424 {
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+}
+
+.jss418 {
+  border: 0;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  background: none;
+}
+
+.jss437 {
+  color: #fd6e70;
+}
+
+.jss79 {
+  text-align: right;
+}
+
+.jss76 {
+  font-size: 15px;
+}
+
+#title_name {
+  margin: 0;
+  padding: 0;
+  font-family: avenir_heavy;
+  font-weight: normal;
+  line-height: 1.2;
+  letter-spacing: -0.06em;
+  font-size: 24px;
+}
+
+@media (min-width: 960px) {
+  #title_name {
+    font-size: 32px;
   }
 }

@@ -1,0 +1,74 @@
+<div class="accordion-details-root jss84">
+  <div class="jss181">
+    <div id="container-question"></div>
+    <div class="jss189 jss179">
+      <img class="jss191" src="{{ 'icon_double_chat_bubble-gray.svg' | asset_url }}" />
+      <div>
+        <div class="jss41 jss50 jss54 jss190">Precisa de ajuda?</div>
+        <div class="jss40 jss50 jss54 jss190">Sempre estaremos aqui para te ajudar.</div>
+        <div class="jss40 jss50 jss54"><a class="jss14 jss192" href="/contato/">Fale com nosso suporte ›</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const containerQestion = document.querySelector('#container-question');
+  
+  const extractQA = (input) => {
+    const qaPattern = /#Pergunta:\n([\s\S]+?)\nResposta:\n([\s\S]+?)\*\*/g;
+
+    let match;
+    const qaArray = [];
+
+    while (match = qaPattern.exec(input)) {
+      qaArray.push({ pergunta: match[1].trim(), resposta: match[2].trim() });
+    }
+
+    return qaArray;
+  };
+
+  const qaArray = extractQA(`{{ product.description }}`);
+  qaArray.forEach((qa, index) => {
+    const accordionHTML = `
+      <div class="Paper-root accordion-root jss183 paper-elevation0">
+          <div class="button-base-root accordion-summary-root jss189" style="margin: 0" role="button" id="button-accordion-qestion-${index}" onclick="toggleAccordionQestion(${index})">
+              <div class="accordion-summary-content jss186">
+                  <div class="jss41 jss50 jss54">${qa.pergunta}</div>
+              </div>
+              <div class="button-base-root MuiIconButton-root accordion-summary-expandIcon jss187 MuiIconButton-edgeEnd" aria-disabled="false" aria-hidden="true">
+                <span class="MuiIconButton-label">
+                  <img class="jss180" src="{{ 'icon_plus_sign-gray.svg' | asset_url}}" />
+                </span>
+              </div>
+          </div>
+          <div id="accordion-qestion-${index}" class="collapse-container collapse-hidden" style="min-height:0px">
+              <div class="collapse-wrapper">
+                  <div class="collapse-wrapperInner">
+                      <div role="region">
+                          <div class="accordion-details-root jss188">
+                              <p class="jss40 jss48 jss54">${qa.resposta.split('\n').map(line => `<p>${line}</p>`).join('')}</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    `;
+    containerQestion.insertAdjacentHTML('beforeend', accordionHTML);
+  });
+
+  const toggleAccordionQestion = (id) => {
+    const accordionContent = document.querySelector('#accordion-qestion-' + id);
+    accordionContent.classList.toggle('collapse-hidden');
+
+    const buttonExpande = document.querySelector('#button-accordion-qestion-' + id);
+    const icon = buttonExpande.querySelector('img.jss74');
+
+    if (accordionContent.classList.contains('collapse-hidden')) {
+      icon.style.transform = 'rotateZ(0deg)';
+    } else {
+      icon.style.transform = 'rotateZ(45deg)';
+    }
+  }
+</script>

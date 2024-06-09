@@ -44,21 +44,12 @@ Usage:
 
   {% assign option_color_class = '' %}
 
-  {% if option.name contains 'cor:' %}
-  {% assign option_color_class = 'option-color' %}
-  {% endif %}
 
   <fieldset id="index-{{ forloop.index }}" class="js product-form__input product-form__input--pill {{ option_color_class }}">
     <legend class="form__label">{{ option.name }}</legend>
     <div class="form__label-color">
       <div class="jss402" style="background: linear-gradient(rgb(72, 72, 72), rgb(7, 7, 7));"></div>
     </div>
-
-    <style>
-      .product-form__input--pill.option-color input[type='radio']+label {
-        background-color: {{ option.values[forloop.index] }}
-      }
-    </style>
 
     {% render 'product-variant-options',
     product: product,
@@ -96,28 +87,3 @@ Usage:
     </script>
 </variant-selects>
 {%- endunless -%}
-
-
-<style>
-  .product-form__input--pill.option-color input[type='radio']+label {
-    width: 40px;
-    border: 1px solid #cccccc;
-    cursor: pointer;
-    height: 40px;
-    display: inline-block;
-    padding: 3px;
-    box-sizing: border-box;
-    transition: border-color 175ms ease-in-out;
-    margin-right: 8px;
-    border-radius: 50%;
-  }
-
-  .product-form__input--pill.option-color input[type='radio']+label {
-    color: transparent !important;
-  }
-
-  .product-form__input--pill.option-color input[type='radio']:checked+label {
-    /* background-color: inherit !important; */
-    border-color: #000;
-  }
-</style>

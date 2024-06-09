@@ -105,7 +105,10 @@
       font-size: 20px;
     }
   }
-
+  .container-product .wrapper-image {
+    text-align: center;
+  }
+ 
   .container-product .wrapper-image img {
     width: 100%;
     max-width: 800px;
@@ -165,7 +168,7 @@
         </div>
         <div class="actions">
           <div class="wrapper-link">
-            <a class="link" href="/details-product">Saiba mais ›</a>
+            <a class="link" href="{{ product.url }}?intro=product">Saiba mais ›</a>
           </div>
           <div class="wrapper-link">
             <a class="link" href="{{ product.url }}">Compre agora ›</a>
