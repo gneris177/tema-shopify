@@ -42,7 +42,7 @@
     font-family: avenir_book;
     font-weight: normal;
     line-height: 1.2;
-    letter-spacing: -0.040em;
+    letter-spacing: -0.04em;
   }
 
   .jss67 {
@@ -112,6 +112,10 @@
   .jss68 {
     color: #fff;
   }
+
+  body {
+    overflow-x: hidden;
+  }
 {%- endstyle -%}
 
 <div
@@ -135,97 +139,99 @@
       {%- endif -%}
 
       <div class="jss834">
-        <div class="jss827">
-          <div class="jss828">
-            <div class="jss829">
-              <div class="jss830">
-                <div class="jss66 jss76 jss80" style="color: #000;">Subtotal</div>
-                <div class="jss67 jss76 jss80 jss832">Frete</div>
-                <div class="jss67 jss76 jss80" style="color: #000;">Total</div>
+        <div class="jss828">
+          <div class="jss829">
+            <div class="jss830">
+              <div class="jss66 jss76 jss80" style="color: #000;">Subtotal</div>
+              <div class="jss67 jss76 jss80 jss832">Frete</div>
+              <div class="jss67 jss76 jss80" style="color: #000;">Total</div>
+            </div>
+            <div class="jss831">
+              <div class="jss66 jss76 jss80" style="color: #000;" id="subtotal">R$&nbsp;516,00</div>
+              <div class="jss67 jss76 jss80 jss832">Grátis</div>
+              <div class="jss67 jss76 jss80" style="color: #000;" id="total">
+                {{ cart.total_price | money_with_currency }}
               </div>
-              <div class="jss831">
-                <div class="jss66 jss76 jss80"  style="color: #000;">R$&nbsp;516,00</div>
-                <div class="jss67 jss76 jss80 jss832">Grátis</div>
-                <div class="jss67 jss76 jss80" style="color: #000;">{{ cart.total_price | money_with_currency }}</div>
-              </div>
-              <div class="cart__blocks">
-        {% for block in section.blocks %}
-          {%- case block.type -%}
-            {%- when '@app' -%}
-              {% render block %}
-            {%- when 'subtotal' -%}
-              <div class="js-contents" {{ block.shopify_attributes }}>
-                <div>
-                  {%- if cart.cart_level_discount_applications.size > 0 -%}
-                    <ul class="discounts list-unstyled" role="list" aria-label="{{ 'customer.order.discount' | t }}">
-                      {%- for discount in cart.cart_level_discount_applications -%}
-                        <li class="discounts__discount discounts__discount--position">
-                          {%- render 'icon-discount' -%}
-                          {{ discount.title }}
-                          (-{{ discount.total_allocated_amount | money }})
-                        </li>
-                      {%- endfor -%}
-                    </ul>
-                  {%- endif -%}
-                </div>
-
-                <div class="totals">
-                  <h2 class="totals__total">{{ 'sections.cart.estimated_total' | t }}</h2>
-                  <p class="totals__total-value">{{ cart.total_price | money_with_currency }}</p>
-                </div>
-
-                <small class="tax-note caption-large rte">
-                  {%- if cart.taxes_included and shop.shipping_policy.body != blank -%}
-                    {{ 'sections.cart.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url }}
-                  {%- elsif cart.taxes_included -%}
-                    {{ 'sections.cart.taxes_included_but_shipping_at_checkout' | t }}
-                  {%- elsif shop.shipping_policy.body != blank -%}
-                    {{ 'sections.cart.taxes_and_shipping_policy_at_checkout_html' | t: link: shop.shipping_policy.url }}
-                  {%- else -%}
-                    {{ 'sections.cart.taxes_and_shipping_at_checkout' | t }}
-                  {%- endif -%}
-                </small>
-              </div>
-            {%- else -%}
-              <div class="cart__ctas" {{ block.shopify_attributes }}>
-                <button
-                  type="submit"
-                  id="checkout"
-                  class="cart__checkout-button button"
-                  name="checkout"
-                  {% if cart == empty %}
-                    disabled
-                  {% endif %}
-                  form="cart"
-                >
-                  {{ 'sections.cart.checkout' | t }}
-                </button>
-              </div>
-          {%- endcase -%}
-        {% endfor %}
-
-        <div id="cart-errors"></div>
-      </div> 
             </div>
           </div>
         </div>
-        <div class="jss825">
-          <a class="jss14" href="/checkout/">
-            <button 
-              class="jss662"  
-              type="submit"
-              id="checkout"
-              name="checkout"
-              {% if cart == empty %}
-                disabled
-              {% endif %}
-              form="cart"
-            >
-              <span class="jss68 jss76 jss80 jss667">Confirmar</span>
-            </button>
-          </a>
-        </div>
       </div>
+    </div>
+
+    <div class="cart__blocks" style="display: none">
+      {% for block in section.blocks %}
+        {%- case block.type -%}
+          {%- when '@app' -%}
+            {% render block %}
+          {%- when 'subtotal' -%}
+            <div class="js-contents" {{ block.shopify_attributes }}>
+              <div>
+                {%- if cart.cart_level_discount_applications.size > 0 -%}
+                  <ul class="discounts list-unstyled" role="list" aria-label="{{ 'customer.order.discount' | t }}">
+                    {%- for discount in cart.cart_level_discount_applications -%}
+                      <li class="discounts__discount discounts__discount--position">
+                        {%- render 'icon-discount' -%}
+                        {{ discount.title }}
+                        (-{{ discount.total_allocated_amount | money }})
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                {%- endif -%}
+              </div>
+
+              <div class="totals">
+                <h2 class="totals__total">{{ 'sections.cart.estimated_total' | t }}</h2>
+                <p class="totals__total-value">{{ cart.total_price | money_with_currency }}</p>
+              </div>
+
+              <small class="tax-note caption-large rte">
+                {%- if cart.taxes_included and shop.shipping_policy.body != blank -%}
+                  {{ 'sections.cart.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url }}
+                {%- elsif cart.taxes_included -%}
+                  {{ 'sections.cart.taxes_included_but_shipping_at_checkout' | t }}
+                {%- elsif shop.shipping_policy.body != blank -%}
+                  {{ 'sections.cart.taxes_and_shipping_policy_at_checkout_html' | t: link: shop.shipping_policy.url }}
+                {%- else -%}
+                  {{ 'sections.cart.taxes_and_shipping_at_checkout' | t }}
+                {%- endif -%}
+              </small>
+            </div>
+          {%- else -%}
+            <div class="cart__ctas" {{ block.shopify_attributes }}>
+              <button
+                type="submit"
+                id="checkout"
+                class="cart__checkout-button button"
+                name="checkout"
+                {% if cart == empty %}
+                  disabled
+                {% endif %}
+                form="cart"
+              >
+                {{ 'sections.cart.checkout' | t }}
+              </button>
+            </div>
+        {%- endcase -%}
+      {% endfor %}
+
+      <div id="cart-errors"></div>
+    </div>
+
+    <div class="jss825">
+      <a class="jss14" href="/checkout/">
+        <button
+          class="jss662"
+          type="submit"
+          id="checkout"
+          name="checkout"
+          {% if cart == empty %}
+            disabled
+          {% endif %}
+          form="cart"
+        >
+          <span class="jss68 jss76 jss80 jss667">Confirmar</span>
+        </button>
+      </a>
     </div>
   </div>
 </div>

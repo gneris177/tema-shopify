@@ -1,36 +1,9 @@
-<style>
-  .jss96 {
-    width: 100%;
-    overflow: hidden;
-    position: relative;
-    border-top: 1px solid #e5e5e5;
-  }
-  .jss16 {
-    width: 100%;
-    margin: auto;
-  }
-  @media (min-width:960px) {
-    .jss76 {
-      width: 100vw;
-      margin-left: calc((100% - 100vw) / 2);
-    }
-  }
-  .jss6 {
-    width: 87.5px;
-    height: 36.5px;
-  }
-
-  #section-intro-2 {
-    border-top: none;
-  }
-</style>
-
 <div class="jss16 jss76">
-  <div class="jss37" style="text-align: center;">
+  {% comment %} <div class="jss37" style="text-align: center;">
     <h1 class="jss28">
       <img src="{{ settings.logo | img_url: '200x' }}" alt="logo" class="jss6">
     </h1>
-  </div>
+  </div> {% endcomment %}
 
   {% assign sections = product.description | split: "#secção" %}
   {% for section in sections %}
@@ -42,18 +15,17 @@
         {% for line in lines %}
         {% if line.size > 0 %}
         {% if line contains "titulo:" %}
-        <h2 class="jss41 jss44 jss54">{{ line | remove: "titulo:" }}</h2>
+        <h2 class="jss41 jss44 jss54 text-center">{{ line | remove: "titulo:" }}</h2>
         {% elsif line contains "legenda:" %}
-        <h3 class="jss40 jss46 jss54">{{ line | remove: "legenda:" }}</h3>
+        <h3 class="jss40 jss46 jss54 text-center">{{ line | remove: "legenda:" }}</h3>
         {% elsif line contains "texto:" %}
-        <p class="jss40 jss47 jss54 jss87">{{ line | remove: "texto:" }}</p>
+        <p class="jss40 jss47 jss54 text-center jss87">{{ line | remove: "texto:" }}</p>
         {% elsif line contains "imagem-baixo:" %}
         {% assign line = "imagem-baixo:123" %}
         {% assign number = line | split: ":" | last | strip | plus: -1 %}
-        <picture class="jss92">
-          <source media="(min-width: 600px)" srcset="{{ product.images[number] | image_url }}">
+        <div class="wrapper-image">
           <img alt="{{ product.title }}" src="{{ product.images[number] | image_url }}">
-        </picture>
+        </div>
         {% endif %}
         {% endif %}
         {% endfor %}
@@ -71,89 +43,199 @@
       <img src="{{ 'star.svg' | asset_url }}" class="jss147">
       <img src="{{ 'star.svg' | asset_url }}" class="jss147">
       <div class="jss142">
-        <div class="jss41 jss50 jss54">Média 5,0 de 5,0</div>
-        <div class="jss40 jss50 jss54 jss137">Mais de 2,8 mil avaliações</div>
+        <div class="jss41 jss50 jss54 text-center">Média 5,0 de 5,0</div>
+        <div class="jss40 jss50 jss54 jss137 text-center">Mais de 2,8 mil avaliações</div>
       </div>
     </div>
 
     <div class="jss136">
-      <h2 class="jss41 jss44 jss51">Mais de 100 mil clientes.</h2>
-      <h3 class="jss40 jss46 jss51">Quem já comprou, adorou.</h3>
-      <p class="jss40 jss47 jss54 jss137">A Jouse já tem mais de 100 mil clientes satisfeitos em todo o Brasil. Nossos índices de
-        avaliações com nota máxima representam anos de dedicação e compromisso com a excelência. Quem já conhece a Jouse, recomenda a
-        Jouse Série 1 para todos os seus amigos e familiares.</p>
+      <h2 class="jss41 jss44 jss51 text-center">Diversos clientes pelo Brasil.</h2>
+      <h3 class="jss40 jss46 jss51 text-center">Quem já comprou, adorou.</h3>
+      <p class="jss40 jss47 jss54 jss137 text-center">A Casa Segura já conquistou a satisfação de milhares de clientes em todo o Brasil. Nossos índices de avaliações com nota máxima refletem anos de dedicação e compromisso com a excelência. Quem já conhece a Casa Segura, recomenda nossos produtos e serviços para todos os seus amigos e familiares.</p>
     </div>
 
-    <div class="jss143">
-      <div class="jss144">
-        <div class="jss145">
-          <img srcset="https://www.jouse.com.br/static/img/product/reviews/mario.jpg,
-            /static/img/product/reviews/mario-2x.jpg 2x,
-            /static/img/product/reviews/mario-3x.jpg 3x" alt="Foto de perfil mario"></div>
-        <div class="jss146">
-          <p class="jss40 jss49 jss54">“Uma carteira feita no Brasil com<br class="jss140">o padrão de qualidade que
-            <span class="jss41 jss49 jss54">muitos produtos importados não têm</span>.”
-          </p>
-          <div class="jss40 jss50 jss54 jss137">Mario Pigon de Guarulhos, SP</div>
-        </div>
-      </div>
-      <div class="jss144">
-        <div class="jss145"><img srcset="https://www.jouse.com.br/static/img/product/reviews/vitoria.jpg,
-            /static/img/product/reviews/vitoria-2x.jpg 2x,
-            /static/img/product/reviews/vitoria-3x.jpg 3x" alt="Foto de perfil vitoria"></div>
-        <div class="jss146">
-          <p class="jss40 jss49 jss54">“<span class="jss41 jss49 jss54">Acabamento impecável</span>, <br class="jss140">entrega antes do informado.”</p>
-          <div class="jss40 jss50 jss54 jss137">Vitória Agostini de Porto Alegre, RS</div>
-        </div>
-      </div>
-      <div class="jss144" data-aos="jouse-fade-up">
-        <div class="jss145"><img srcset="https://www.jouse.com.br/static/img/product/reviews/fabio.jpg,
-            /static/img/product/reviews/fabio-2x.jpg 2x,
-            /static/img/product/reviews/fabio-3x.jpg 3x" alt="Foto de perfil fabio"></div>
-        <div class="jss146">
-          <p class="jss40 jss49 jss54">“Sem dúvida,<!-- --> <span class="jss41 jss49 jss54">a melhor experiência<br class="jss140">de
-              compra</span> <!-- -->que já tive.”</p>
-          <div class="jss40 jss50 jss54 jss137">Fábio Moura de Olímpia, SP</div>
-        </div>
-      </div>
-    </div>
+    <div id="comentarios-container"></div>
   </section>
-
-  <div class="jss91"><figure class="jss86 jss90"></figure></div>
 
   <div class="jss104">
     <div class="jss101">
-      <div class="jss25 jss30 jss38">Compre online.</div>
-      <div class="jss24 jss33 jss38">Disponível com&nbsp;
-        <span class="jss25 jss33 jss38 jss102">frete grátis</span>
+      <div class="text-he compre-online">Compre online.</div>
+      <div class="text-he text-disponivel">Disponível com&nbsp;
+        <span class="text-he text-frete">frete grátis</span>
         <br>por tempo limitado.
       </div>
     </div>
-    <div class="jss100">
-      <a class="jss14" href="/comprar/jouse-serie-1/">
-        <button class="jss105" tabindex="0">
-          <span class="jss26 jss34 jss38 jss110">Compre agora</span>
-        </button>
-      </a>
-    </div>
+    <a href="{{ product.url }}" style="margin-top: 24px; display: block">
+      <button class="jss105" tabindex="0">
+        <span style="color: #ffffff">Compre agora</span>
+      </button>
+    </a>
   </div>
 </div>
 
+<script>
+  const regexComentario2 = /comentário:\s*(.*?)\*\*/gs;
+  const comentarios = [];
+  const peoples2 = [
+    { nome: "Marcelo Ferreira", sexo: "male", local: "Vitória, ES" },
+    { nome: "Nathalia Barbosa", sexo: "female", local: "Campo Grande, MS" },
+    { nome: "Otavio Ribeiro", sexo: "male", local: "Maceió, AL" },
+    { nome: "Paula Melo", sexo: "female", local: "Natal, RN" },
+    { nome: "Quirino Gomes", sexo: "male", local: "Teresina, PI" },
+    { nome: "Renata Dias", sexo: "female", local: "João Pessoa, PB" },
+    { nome: "Sandro Batista", sexo: "male", local: "Aracaju, SE" },
+    { nome: "Tatiane Carvalho", sexo: "female", local: "Cuiabá, MT" },
+    { nome: "Ubirajara Araujo", sexo: "male", local: "Palmas, TO" },
+    { nome: "Vanessa Pires", sexo: "female", local: "Rio Branco, AC" },
+    { nome: "Walter Cunha", sexo: "male", local: "Macapá, AP" },
+    { nome: "Ximena Matos", sexo: "female", local: "Porto Velho, RO" },
+    { nome: "Yuri Figueiredo", sexo: "male", local: "Boa Vista, RR" },
+    { nome: "Zilda Teixeira", sexo: "female", local: "São Luís, MA" },
+    { nome: "Aline Moreira", sexo: "female", local: "Santos, SP" },
+    { nome: "Bruna Nascimento", sexo: "female", local: "Uberlândia, MG" },
+    { nome: "Caio Souza", sexo: "male", local: "Ribeirão Preto, SP" },
+    { nome: "Débora Rocha", sexo: "female", local: "Londrina, PR" }
+  ];
+
+  while (match = regexComentario2.exec(`{{product.description}}`)) {
+    comentarios.push(match[1]);
+  }
+  function getRandomElements(arr, num) {
+  const shuffled = arr.slice();
+  let i = arr.length;
+  let min = i - num;
+  let temp, index;
+  while (i-- > min) {
+    index = Math.floor((i + 1) * Math.random());
+    temp = shuffled[index];
+    shuffled[index] = shuffled[i];
+    shuffled[i] = temp;
+  }
+  return shuffled.slice(min);
+}
+
+function generateComentario(comentario, pessoa) {
+  return `
+    <div class="jss143">
+      <div class="jss144">
+        <div class="jss145">
+          <img src="https://xsgames.co/randomusers/assets/avatars/${pessoa.sexo}/${random2}.jpg" " alt="Foto de perfil ${pessoa.nome}">
+        </div>
+        <div class="jss146">
+          <p class="jss40 jss49 jss54 text-center">“${comentario}”</p>
+          <div class="jss40 jss50 jss54 jss137 text-center">${pessoa.nome} de ${pessoa.local}</div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const comentariosContainer = document.getElementById("comentarios-container");
+  const randomComentarios = getRandomElements(comentarios, 3);
+  const randomPeoples = getRandomElements(peoples2, 3);
+  
+  randomComentarios.forEach((comentario, index) => {
+    comentariosContainer.innerHTML += generateComentario(comentario, randomPeoples[index]);
+  });
+});
+</script>
+
 <style>
+  body {
+    overflow-x: hidden;
+  }
+
+  .jss96 {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    border-top: 1px solid #e5e5e5;
+  }
+
+  .jss16 {
+    width: 100%;
+    margin: auto;
+  }
+
+  @media (min-width:960px) {
+    .jss76 {
+      width: 100vw;
+      margin-left: calc((100% - 100vw) / 2);
+    }
+  }
+
+  .jss6 {
+    width: 87.5px;
+    height: 36.5px;
+  }
+
+  #section-intro-2 {
+    border-top: none;
+  }
+
+  section .jss85 h2,
+  section .jss85 h3,
+  section .jss85 p {
+    text-align: center;
+  }
+
+  @media (max-width:960px) {
+    .section .jss85 p {
+      text-align: start;
+    }
+  }
+
+  section .wrapper-image {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 72px auto 0px;
+  }
+
+  @media (max-width:960px) {
+    section .wrapper-image img {
+      object-fit: contain;
+      max-width: 100%;
+    }
+  }
+
+  .jss142 {
+    text-align: center;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
   .jss101 {
     margin-top: 32px;
-}
+  }
 
-.jss33 {
+  .jss33 {
     font-size: 18px;
-}
+  }
 
-.jss24 {
+  .jss24,
+  .text-he {
     margin: 0;
     padding: 0;
     font-family: avenir_book;
     font-weight: normal;
     line-height: 1.2;
     letter-spacing: -0.040em;
-}
+  }
+
+  @media (min-width: 960px) {
+    .text-he {
+      font-size: 20px;
+    }
+  }
+
+  .compre-online {
+    margin: auto;
+    font-size: 24px;
+    font-weight: 600;
+    color: #000;
+  }
 </style>

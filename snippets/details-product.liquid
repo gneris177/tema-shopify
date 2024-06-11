@@ -17,7 +17,7 @@
     <div class="jss68"><img src="{{ 'icon_chat_bubble.svg' | asset_url }}" alt="Ícone balão de conversa" /></div>
     <div class="jss72">
       <div class="jss41 jss50 jss54">Suporte online</div>
-      <div class="jss40 jss50 jss54 jss67"><a class="jss14 jss70" href="/contato/">Fale com a Jouse ›</a></div>
+      <div class="jss40 jss50 jss54 jss67"><a class="jss14 jss70" href="/contato/">Fale com a Casa Segura ›</a></div>
     </div>
   </div>
 </section>
@@ -73,7 +73,7 @@
         <div class="collapse-wrapperInner">
           <div role="region">
             <div class="accordion-details-root jss84">
-              {% comment %} {% render 'details-product-stories', product: product %} {% endcomment %}
+              {% render 'details-product-stories', product: product %}
             </div>
           </div>
         </div>
@@ -161,9 +161,6 @@
     </div>
   </section>
 </section>
-
-{% render 'details-product-stories', product: product %}
-
 
 <script>
   const toggleAccordion = (id) => {

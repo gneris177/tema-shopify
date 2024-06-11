@@ -181,6 +181,7 @@ class CartItems extends HTMLElement {
       })
       .finally(() => {
         this.disableLoading(line);
+        this.updateTotalValue();
       });
   }
 
@@ -226,6 +227,24 @@ class CartItems extends HTMLElement {
 
     cartItemElements.forEach((overlay) => overlay.classList.add('hidden'));
     cartDrawerItemElements.forEach((overlay) => overlay.classList.add('hidden'));
+  }
+
+  updateTotalValue() {
+    const cartTotalElement = document.querySelector('#total');
+
+    fetch('/cart.js')
+    .then((response) => response.json())
+    .then((data) => {
+      const formatter = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: data.currency });
+
+      let rawvalue = data.total_price.toString();
+      let rawvalue2 = rawvalue.slice(0, -2) + '.' + rawvalue.slice(-2);
+
+      const rawvalue3 = formatter.format(rawvalue2) + ' ' + data.currency;
+      const currentTotal = rawvalue3.replace('.', ',');
+
+      if (cartTotalElement) cartTotalElement.textContent = currentTotal;
+    });
   }
 }
 

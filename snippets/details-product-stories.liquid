@@ -1,3 +1,5 @@
+<section id="container-storie-main" class="container-storie-main"></section>
+
 <section class="container-view-storie close">
   <div class="daily-stories">
     <div class="daily-stories__container">
@@ -13,10 +15,13 @@
 </section>
 
 <script>
+  const containerStorie = document.querySelector('#container-storie-main');
   const storieImage = document.querySelector('#daily-stories-image');
   const storieProgress = document.querySelector('#progress-bars');
   const imageUrls = [];
+  let isStarted = false;
   let storieIndex = 0;
+  let intervalId;
 
   const getImages = () => {
     const regex = /STORIES:\s*([\s\S]*?)(?=#|$)/gi;
@@ -33,7 +38,7 @@
   };
 
   const nextStorie = () => {
-    if (storieIndex === (imageUrls.length - 1)) {
+    if (storieIndex === imageUrls.length - 1) {
       resetProgress();
     } else {
       ++storieIndex;
@@ -42,12 +47,17 @@
     if (storieImage) storieImage.src = imageUrls[storieIndex];
   };
 
-  const startStories = () => {
-    storieImage.src = imageUrls[0];
+  const startStories = (startIndex = 0) => {
+    resetProgress();
+
+    storieIndex = startIndex;
+    storieImage.src = imageUrls[storieIndex];
 
     let currentTime = 0;
     const storieDuration = 4;
-    const updateInterval = 100;
+    const updateInterval = 10;
+
+    storieProgress.innerHTML = '';
 
     for (let i = 0; i < imageUrls.length; i++) {
       storieProgress.innerHTML += `
@@ -67,26 +77,80 @@
       if (indicator) indicator.style.width = `${completionRatio * 100}%`;
 
       if (currentTime >= storieDuration) {
-        nextStorie(true);
+        nextStorie();
         currentTime = 0;
       }
     };
 
-    setInterval(updateProgress, updateInterval);
+    for (let i = 0; i < startIndex; i++) {
+      const indicator = document.querySelector(`[data-storie-indicator="${i}"]`);
+      if (indicator) indicator.style.width = '100%';
+    }
+
+    intervalId = setInterval(updateProgress, updateInterval);
   };
 
   const resetProgress = () => {
-    const indicators = document.querySelectorAll(`.indicator`);
+    const indicators = document.querySelectorAll('.indicator');
     indicators.forEach(indicator => indicator.style.width = '0');
     storieIndex = 0;
+    storieProgress.innerHTML = '';
+    clearInterval(intervalId); 
   };
 
-  const toggleStorie = () => {
-    document.querySelector(`.container-view-storie`)?.classList?.toggle('close');
-  }
+  const toggleStorie = (index) => {
+    document.querySelector('.container-view-storie')?.classList?.toggle('close');
+    if (!isStarted) {
+      isStarted = true;
+      startStories(index);
+    } else {
+      resetProgress();
+      startStories(index);
+    }
+  };
 
   getImages();
-  startStories();
+
+  if (imageUrls.length > 0) {
+    let imagesHtml = '';
+
+    for (let i = 0; i < imageUrls.length; i++) {
+      imagesHtml += `
+        <div class="jss159" onClick="toggleStorie(${i})">
+          <img alt="Foto dos Stories ${i + 1}" src="${imageUrls[i]}" class="jss158" />
+        </div>`;
+    }
+
+    containerStorie.innerHTML = `
+      <div class="MuiAccordionDetails-root jss84">
+        <div class="jss165">
+          <div class="jss157">
+            <div class="jss151">
+              <button class="jss152 jss153" onClick="scrollStories('left')">
+                <img class="jss149 jss150" src="https://www.jouse.com.br/static/img/common/icon/icon_chevron-gray.svg" alt="Chevron esquerdo" />
+              </button>
+            </div>
+            <div class="jss148" id="container-stories" style="">${imagesHtml}</div>
+            <div class="jss151">
+              <button class="jss152 jss154" onClick="scrollStories('right')">
+                <img class="jss149" src="https://www.jouse.com.br/static/img/common/icon/icon_chevron-gray.svg" alt="Chevron direito" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  const scrollStories = (direction) => {
+    const container = document.getElementById('container-stories');
+    const scrollAmount = 700; 
+    if (direction === 'left') {
+      container.scrollLeft -= scrollAmount;
+    } else {
+      container.scrollLeft += scrollAmount;
+    }
+  };
 </script>
 
 <style>
@@ -276,5 +340,13 @@
   .storie-button-close img {
     width: 16px;
     height: 16px;
+  }
+
+  .indicator {
+    display: block;
+    height: 100%;
+    background-color: white;
+    width: 0;
+    transition: width linear;
   }
 </style>

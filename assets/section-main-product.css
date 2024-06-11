@@ -1658,7 +1658,7 @@ a.product__text {
 @media (min-width:960px) {
   .jss20 {
     margin-top: 0;
-    margin-left: 72px;
+    margin-left: 24px;
   }
 }
 
@@ -1774,6 +1774,7 @@ a.product__text {
 .jss39 img {
   width: 100%;
   height: 100%;
+  object-fit: contain;
 }
 
 .jss40 {
@@ -2265,7 +2266,6 @@ a.product__text {
 
 .jss158 {
   width: 100%;
-  position: absolute;
 }
 
 .jss159 {
