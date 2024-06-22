@@ -201,7 +201,12 @@
   <header class="jss13">
     <div class="jss9" style="justify-content: space-between;">
       <a class="jss14 jss11" href="/">
-        <img src="{{ shop.brand.logo | img_url: 'master' }}" alt="Logo {{ shop.name }}" class="jss5 jss12" />
+        <img 
+          src="{{ 'logo.avif' | asset_url }}" 
+          alt="Logo {{ shop.name }}" 
+          class="jss5 jss12" 
+          style="object-fit: contain"
+        />
       </a>
       
       <div class="jss10"></div>
