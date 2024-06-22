@@ -216,13 +216,13 @@
     </div>
     <div class="jss20">
       <div class="jss19">
-        <a href="https://wa.me/554195000000" target="_blank">
-          <img srcSet="https://www.jouse.com.br/static/img/contact/icon_whatsapp.png, https://www.jouse.com.br/static/img/contact/icon_whatsapp-2x.png 2x, https://www.jouse.com.br/static/img/contact/icon_whatsapp-3x.png 3x" alt="Ícone WhatsApp">
+        <a href="https://wa.me/{{ shop.phone }}" target="_blank">
+          <img srcSet="{{ 'icon_whatsapp.png' | asset_url }}">
         </a>
       </div>
       <div class="jss19">
-        <a href="mailto:suporte@jouse.com.br" target="_blank">
-          <img srcSet="https://www.jouse.com.br/static/img/contact/icon_email.png, https://www.jouse.com.br/static/img/contact/icon_email-2x.png 2x, https://www.jouse.com.br/static/img/contact/icon_email-3x.png 3x" alt="Ícone Email">
+        <a href="mailto:{{ shop.email }}" target="_blank">
+          <img srcSet="{{ 'icon_email.png' | asset_url }}" alt="Ícone Email">
         </a>
       </div>
     </div>
@@ -241,7 +241,7 @@
         <h2 class="jss25 jss29 jss38">Precisa de ajuda?</h2>
         <h3 class="jss24 jss30 jss38">Nós vamos te ajudar.</h3>
         <p class="jss24 jss31 jss38">
-          Sempre que precisar, você pode entrar em contato com a equipe de suporte da Jouse. Será um prazer te conhecer,
+          Sempre que precisar, você pode entrar em contato com a equipe de suporte da Casa Segura. Será um prazer te conhecer,
           tirar as suas dúvidas e te ajudar com tudo que você precisar.
         </p>
         <p class="jss24 jss31 jss38">
@@ -250,11 +250,10 @@
         </p>
       </div>
       <picture class="jss43 jss40">
-        <source media="(min-width: 960px)" srcSet="https://www.jouse.com.br/static/img/contact/phone.jpg, https://www.jouse.com.br/static/img/contact/phone-2x.jpg 2x">
-        <img src="https://www.jouse.com.br/static/img/contact/phone-mobile-2x.jpg" alt="Bandeira do Brasil">
+        <source media="(min-width: 960px)" srcSet="{{  'phone.jpg'| asset_url }}">
+        <img src="{{ 'phone-mobile-2x.jpg' | asset_url }}" alt="Bandeira do Brasil">
       </picture>
     </div>
   </div>
 </div>
 ```
-

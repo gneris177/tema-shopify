@@ -2577,6 +2577,7 @@ a.product__text {
   padding-bottom: 0;
   background-color: #000;
   width: fit-content;
+  min-width: 200px;
 }
 
 .jss100 {
