@@ -1,31 +1,33 @@
 <div class="jss16 jss76">
-  {% comment %} <div class="jss37" style="text-align: center;">
-    <h1 class="jss28">
-      <img src="{{ settings.logo | img_url: '200x' }}" alt="logo" class="jss6">
-    </h1>
-  </div> {% endcomment %}
-
-  {% assign sections = product.description | split: "#secção" %}
+  {% assign sections = product.description | split: '#secção' %}
   {% for section in sections %}
-  {% assign lines = section | split: "**" %}
+  {% assign lines = section | split: '**' %}
   {% if lines.size > 0 %}
   <section class="jss96" id="section-intro-{{forloop.index}}">
     <div class="jss85">
       <div class="jss86">
         {% for line in lines %}
         {% if line.size > 0 %}
-        {% if line contains "titulo:" %}
-        <h2 class="jss41 jss44 jss54 text-center">{{ line | remove: "titulo:" }}</h2>
-        {% elsif line contains "legenda:" %}
-        <h3 class="jss40 jss46 jss54 text-center">{{ line | remove: "legenda:" }}</h3>
-        {% elsif line contains "texto:" %}
-        <p class="jss40 jss47 jss54 text-center jss87">{{ line | remove: "texto:" }}</p>
-        {% elsif line contains "imagem-baixo:" %}
-        {% assign line = "imagem-baixo:123" %}
-        {% assign number = line | split: ":" | last | strip | plus: -1 %}
+        {% if line contains 'titulo:' %}
+        <h2 class="jss41 jss44 jss54 text-center">{{ line | remove: 'titulo:' }}</h2>
+        {% elsif line contains 'legenda:' %}
+        <h3 class="jss40 jss46 jss54 text-center">{{ line | remove: 'legenda:' }}</h3>
+        {% elsif line contains 'texto:' %}
+        <p class="jss40 jss47 jss54 text-center jss87">{{ line | remove: 'texto:' }}</p>
+
+        {% elsif line contains 'imagem-baixo:' %}
+        {% assign line = 'imagem-baixo:123' %}
+        {% assign number = line | split: ':' | last | strip | plus: -1 %}
         <div class="wrapper-image">
           <img alt="{{ product.title }}" src="{{ product.images[number] | image_url }}">
         </div>
+
+        {% elsif line contains 'imagem-baixo-2:' %}
+          {% assign line = 'imagem-baixo:123' %}
+          {% assign number = line | split: ':' | last | strip | plus: -1 %}
+          <div class="wrapper-image">
+            <img alt="{{ product.title }}" src="{{ product.images[number] | image_url }}">
+          </div>
         {% endif %}
         {% endif %}
         {% endfor %}
@@ -51,18 +53,28 @@
     <div class="jss136">
       <h2 class="jss41 jss44 jss51 text-center">Diversos clientes pelo Brasil.</h2>
       <h3 class="jss40 jss46 jss51 text-center">Quem já comprou, adorou.</h3>
-      <p class="jss40 jss47 jss54 jss137 text-center">A Casa Segura já conquistou a satisfação de milhares de clientes em todo o Brasil. Nossos índices de avaliações com nota máxima refletem anos de dedicação e compromisso com a excelência. Quem já conhece a Casa Segura, recomenda nossos produtos e serviços para todos os seus amigos e familiares.</p>
+      <p class="jss40 jss47 jss54 jss137 text-center">
+        A Casa Segura já conquistou a satisfação de milhares de clientes em todo o Brasil. Nossos índices de avaliações
+        com nota máxima refletem anos de dedicação e compromisso com a excelência. Quem já conhece a Casa Segura,
+        recomenda nossos produtos e serviços para todos os seus amigos e familiares.
+      </p>
     </div>
 
     <div id="comentarios-container"></div>
   </section>
 
+  <div class="jss123">
+    <figure class="jss118 jss122"></figure>
+  </div>
+
   <div class="jss104">
     <div class="jss101">
       <div class="text-he compre-online">Compre online.</div>
-      <div class="text-he text-disponivel">Disponível com&nbsp;
-        <span class="text-he text-frete">frete grátis</span>
-        <br>por tempo limitado.
+      <div class="text-he text-disponivel">
+        Disponível com&nbsp;
+        <span class="text-he text-frete" style="color: #00c000; font-weight: bold">frete grátis</span>
+        <br>
+        por tempo limitado.
       </div>
     </div>
     <a href="{{ product.url }}" style="margin-top: 24px; display: block">
@@ -73,72 +85,91 @@
   </div>
 </div>
 
+{% assign sections = product.description | split: '#s-banner' %}
+{% for section in sections %}
+{% assign lines = section | split: '**' %}
+{% if lines.size > 0 %}
+{% for line in lines %}
+{% if line.size > 0 %}
+
+{% assign line = 's-banner:123' %}
+{% assign number = line | split: ':' | last | strip | plus: -1 %}
+<style>
+  .jss122 {
+    background-image: url({{ product.images[number] | image_url }});
+  }
+</style>
+{% endif %}
+{% endfor %}
+{% endif %}
+{% endfor %}
+
 <script>
-  const regexComentario2 = /comentário:\s*(.*?)\*\*/gs;
-  const comentarios = [];
+  const regexSectionComentario = /#s-comentário:\s*([^*]+)\*\*/g;
+  let matchRegexSectionComentario;
+  const sectionComentarios = [];
   const peoples2 = [
-    { nome: "Marcelo Ferreira", sexo: "male", local: "Vitória, ES" },
-    { nome: "Nathalia Barbosa", sexo: "female", local: "Campo Grande, MS" },
-    { nome: "Otavio Ribeiro", sexo: "male", local: "Maceió, AL" },
-    { nome: "Paula Melo", sexo: "female", local: "Natal, RN" },
-    { nome: "Quirino Gomes", sexo: "male", local: "Teresina, PI" },
-    { nome: "Renata Dias", sexo: "female", local: "João Pessoa, PB" },
-    { nome: "Sandro Batista", sexo: "male", local: "Aracaju, SE" },
-    { nome: "Tatiane Carvalho", sexo: "female", local: "Cuiabá, MT" },
-    { nome: "Ubirajara Araujo", sexo: "male", local: "Palmas, TO" },
-    { nome: "Vanessa Pires", sexo: "female", local: "Rio Branco, AC" },
-    { nome: "Walter Cunha", sexo: "male", local: "Macapá, AP" },
-    { nome: "Ximena Matos", sexo: "female", local: "Porto Velho, RO" },
-    { nome: "Yuri Figueiredo", sexo: "male", local: "Boa Vista, RR" },
-    { nome: "Zilda Teixeira", sexo: "female", local: "São Luís, MA" },
-    { nome: "Aline Moreira", sexo: "female", local: "Santos, SP" },
-    { nome: "Bruna Nascimento", sexo: "female", local: "Uberlândia, MG" },
-    { nome: "Caio Souza", sexo: "male", local: "Ribeirão Preto, SP" },
-    { nome: "Débora Rocha", sexo: "female", local: "Londrina, PR" }
+    { nome: 'Marcelo Ferreira', sexo: 'male', local: 'Vitória, ES' },
+    { nome: 'Nathalia Barbosa', sexo: 'female', local: 'Campo Grande, MS' },
+    { nome: 'Otavio Ribeiro', sexo: 'male', local: 'Maceió, AL' },
+    { nome: 'Paula Melo', sexo: 'female', local: 'Natal, RN' },
+    { nome: 'Quirino Gomes', sexo: 'male', local: 'Teresina, PI' },
+    { nome: 'Renata Dias', sexo: 'female', local: 'João Pessoa, PB' },
+    { nome: 'Sandro Batista', sexo: 'male', local: 'Aracaju, SE' },
+    { nome: 'Tatiane Carvalho', sexo: 'female', local: 'Cuiabá, MT' },
+    { nome: 'Ubirajara Araujo', sexo: 'male', local: 'Palmas, TO' },
+    { nome: 'Vanessa Pires', sexo: 'female', local: 'Rio Branco, AC' },
+    { nome: 'Walter Cunha', sexo: 'male', local: 'Macapá, AP' },
+    { nome: 'Ximena Matos', sexo: 'female', local: 'Porto Velho, RO' },
+    { nome: 'Yuri Figueiredo', sexo: 'male', local: 'Boa Vista, RR' },
+    { nome: 'Zilda Teixeira', sexo: 'female', local: 'São Luís, MA' },
+    { nome: 'Aline Moreira', sexo: 'female', local: 'Santos, SP' },
+    { nome: 'Bruna Nascimento', sexo: 'female', local: 'Uberlândia, MG' },
+    { nome: 'Caio Souza', sexo: 'male', local: 'Ribeirão Preto, SP' },
+    { nome: 'Débora Rocha', sexo: 'female', local: 'Londrina, PR' },
   ];
 
-  while (match = regexComentario2.exec(`{{product.description}}`)) {
-    comentarios.push(match[1]);
+  while ((matchRegexSectionComentario = regexSectionComentario.exec(`{{product.description}}`))) {
+    sectionComentarios.push(matchRegexSectionComentario[1]);
   }
   function getRandomElements(arr, num) {
-  const shuffled = arr.slice();
-  let i = arr.length;
-  let min = i - num;
-  let temp, index;
-  while (i-- > min) {
-    index = Math.floor((i + 1) * Math.random());
-    temp = shuffled[index];
-    shuffled[index] = shuffled[i];
-    shuffled[i] = temp;
+    const shuffled = arr.slice();
+    let i = arr.length;
+    let min = i - num;
+    let temp, index;
+    while (i-- > min) {
+      index = Math.floor((i + 1) * Math.random());
+      temp = shuffled[index];
+      shuffled[index] = shuffled[i];
+      shuffled[i] = temp;
+    }
+    return shuffled.slice(min);
   }
-  return shuffled.slice(min);
-}
 
-function generateComentario(comentario, pessoa) {
-  return `
+  function generateComentario(comentario, pessoa, index) {
+    return `
     <div class="jss143">
       <div class="jss144">
         <div class="jss145">
-          <img src="https://xsgames.co/randomusers/assets/avatars/${pessoa.sexo}/${random2}.jpg" " alt="Foto de perfil ${pessoa.nome}">
+          <img src="https://xsgames.co/randomusers/assets/avatars/${pessoa.sexo}/${index}.jpg" " alt="Foto de perfil ${pessoa.nome}">
         </div>
         <div class="jss146">
-          <p class="jss40 jss49 jss54 text-center">“${comentario}”</p>
+          <p class="jss40 jss49 jss54 text-center">${comentario}</p>
           <div class="jss40 jss50 jss54 jss137 text-center">${pessoa.nome} de ${pessoa.local}</div>
         </div>
       </div>
     </div>
   `;
-}
+  }
 
-document.addEventListener("DOMContentLoaded", () => {
-  const comentariosContainer = document.getElementById("comentarios-container");
-  const randomComentarios = getRandomElements(comentarios, 3);
-  const randomPeoples = getRandomElements(peoples2, 3);
-  
-  randomComentarios.forEach((comentario, index) => {
-    comentariosContainer.innerHTML += generateComentario(comentario, randomPeoples[index]);
+  document.addEventListener('DOMContentLoaded', () => {
+    const comentariosContainer = document.getElementById('comentarios-container');
+    const randomPeoples = getRandomElements(peoples2, 3);
+
+    sectionComentarios.forEach((comentario, index) => {
+      comentariosContainer.innerHTML += generateComentario(comentario, randomPeoples[index], index);
+    });
   });
-});
 </script>
 
 <style>
@@ -158,7 +189,7 @@ document.addEventListener("DOMContentLoaded", () => {
     margin: auto;
   }
 
-  @media (min-width:960px) {
+  @media (min-width: 960px) {
     .jss76 {
       width: 100vw;
       margin-left: calc((100% - 100vw) / 2);
@@ -180,7 +211,7 @@ document.addEventListener("DOMContentLoaded", () => {
     text-align: center;
   }
 
-  @media (max-width:960px) {
+  @media (max-width: 960px) {
     .section .jss85 p {
       text-align: start;
     }
@@ -193,11 +224,15 @@ document.addEventListener("DOMContentLoaded", () => {
     margin: 72px auto 0px;
   }
 
-  @media (max-width:960px) {
+  @media (max-width: 960px) {
     section .wrapper-image img {
       object-fit: contain;
-      max-width: 100%;
+      max-width: 100% !important;
     }
+  }
+
+  section .wrapper-image img {
+    max-width: 780px;
   }
 
   .jss142 {
@@ -223,7 +258,7 @@ document.addEventListener("DOMContentLoaded", () => {
     font-family: avenir_book;
     font-weight: normal;
     line-height: 1.2;
-    letter-spacing: -0.040em;
+    letter-spacing: -0.04em;
   }
 
   @media (min-width: 960px) {
@@ -237,5 +272,33 @@ document.addEventListener("DOMContentLoaded", () => {
     font-size: 24px;
     font-weight: 600;
     color: #000;
+  }
+
+  @media (min-width: 960px) {
+    .jss123 {
+      margin: 72px auto 0;
+    }
+  }
+
+  @media (min-width: 600px) {
+    .jss123 {
+      height: 350px;
+    }
+  }
+
+  .jss123 {
+    width: 100%;
+    height: 318px;
+    margin: 48px auto 0;
+    max-width: 2560px;
+  }
+
+  .jss118 {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
   }
 </style>

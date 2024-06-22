@@ -5,6 +5,7 @@
   Accepts:
   - media: {Object} Product Media object
   - media_count: {Number} Number of media objects
+  - media_main: {Object}
   - position: {String} Position of the media. Used for accessible label.
   - desktop_layout: {String} Layout of the media for desktop.
   - mobile_layout: {String} Layout of the media for mobile.
@@ -49,11 +50,21 @@
   (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | times: media_width | divided_by: desktop_columns | round }}px, (min-width: 990px) calc({{ media_width | times: 100 | divided_by: desktop_columns }}vw - 10rem), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw / {{ mobile_columns }} - 4rem)
 {%- endcapture -%}
 
-<div style="margin:  auto;">
-  {%- render 'loading-spinner' -%}
+{% if media.preview_image %}
+  <div style="margin:  auto;">
+    {%- render 'loading-spinner' -%}
 
-  <picture class="jss39 jss25">
-    <source class="image_class" media="(min-width: 960px)" srcset="{{ media.preview_image | image_url }}">
-    <img class="image_class" src="{{ media.preview_image | image_url }}">
-  </picture>
-</div>
+    <picture class="jss39 jss25">
+      <source class="image_class" media="(min-width: 960px)" srcset="{{ media.preview_image | image_url }}">
+      <img class="image_class" src="{{ media.preview_image | image_url }}">
+    </picture>
+  </div>
+  {% else %}
+  <div style="margin:  auto;">
+    {%- render 'loading-spinner' -%}
+    <picture class="jss39 jss25">
+      <source class="image_class" media="(min-width: 960px)" srcset="{{ media_main | image_url }}">
+      <img class="image_class" src="{{ media_main | image_url }}">
+    </picture>
+  </div>
+{% endif %}
