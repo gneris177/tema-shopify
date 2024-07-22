@@ -2106,20 +2106,19 @@ a.product__text {
 }
 
 .jss86 {
-  margin: 48px 16px 0;
+  margin: 16px 16px 0;
   text-align: left;
 }
 @media (min-width:600px) {
   .jss86 {
     width: 540px;
-    margin: 48px auto 0;
+    margin: 16px auto 0;
     text-align: center;
   }
 }
 @media (min-width:960px) {
   .jss86 {
     width: 600px;
-    margin-top: 72px;
   }
 }
 

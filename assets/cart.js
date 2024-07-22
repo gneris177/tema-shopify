@@ -231,21 +231,27 @@ class CartItems extends HTMLElement {
 
   updateTotalValue() {
     const cartTotalElement = document.querySelector('#total');
+    const cartSubtotalElement = document.querySelector('#subtotal');
 
     fetch('/cart.js')
-    .then((response) => response.json())
-    .then((data) => {
-      const formatter = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: data.currency });
+      .then((response) => response.json())
+      .then((data) => {
+        const formatter = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: data.currency });
 
-      let rawvalue = data.total_price.toString();
-      let rawvalue2 = rawvalue.slice(0, -2) + '.' + rawvalue.slice(-2);
+        let rawTotalValue = data.total_price.toString();
+        let rawSubtotalValue = data.items_subtotal_price.toString(); // Atualize este campo conforme necessário
 
-      const rawvalue3 = formatter.format(rawvalue2) + ' ' + data.currency;
-      const currentTotal = rawvalue3.replace('.', ',');
+        let formattedTotalValue = rawTotalValue.slice(0, -2) + '.' + rawTotalValue.slice(-2);
+        let formattedSubtotalValue = rawSubtotalValue.slice(0, -2) + '.' + rawSubtotalValue.slice(-2);
 
-      if (cartTotalElement) cartTotalElement.textContent = currentTotal;
-    });
+        const formattedTotal = formatter.format(formattedTotalValue).replace('.', ',') + ' ' + data.currency;
+        const formattedSubtotal = formatter.format(formattedSubtotalValue).replace('.', ',') + ' ' + data.currency;
+
+        if (cartTotalElement) cartTotalElement.textContent = formattedTotal;
+        if (cartSubtotalElement) cartSubtotalElement.textContent = formattedSubtotal;
+      });
   }
+
 }
 
 customElements.define('cart-items', CartItems);

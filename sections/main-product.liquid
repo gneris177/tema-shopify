@@ -1,22 +1,31 @@
-{%- capture contentForQuerystring -%}{{ content_for_header }}{%- endcapture -%}
-{%- assign pageUrl = contentForQuerystring
-  | split: '"pageurl":"'
-  | last
-  | split: '"'
-  | first
-  | split: '.myshopify.com'
-  | last
-  | replace: '\/', '/'
-  | replace: '%20', ' '
-  | replace: '\u0026', '&'
--%}
-{% capture finalurl %}https://{{ pageUrl }}{% endcapture %}
+<style>
+  #info-product.disable {
+    display: none !important;
+  }
 
-{% if finalurl contains 'intro=product' %}
+  #MainProduct-{{ section.id }}.disable {
+    display: none !important;
+  }
+</style>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const introParam = urlParams.get('intro');
+    
+    if (introParam == 'product') {
+      document.getElementById('info-product').classList.remove('disable');
+      document.getElementById('MainProduct-{{ section.id }}').classList.add('disable');
+    }
+});
+</script>
+
+  <div id="info-product" class="disable">
     {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
-  {% render 'intro-product', product: product %}
-{% else %}
-<section id="MainProduct-{{ section.id }}" class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}"
+    {% render 'intro-product', product: product %}
+  </div>
+
+  <section id="MainProduct-{{ section.id }}" class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}"
   data-section="{{ section.id }}">
   {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
   {{ 'component-accordion.css' | asset_url | stylesheet_tag }}
@@ -191,7 +200,6 @@
     </script>
   </div>
 </section>
-{% endif %} 
 
 {% schema %}
 {

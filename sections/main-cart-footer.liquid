@@ -147,7 +147,9 @@
               <div class="jss67 jss76 jss80" style="color: #000;">Total</div>
             </div>
             <div class="jss831">
-              <div class="jss66 jss76 jss80" style="color: #000;" id="subtotal">R$&nbsp;516,00</div>
+              <div class="jss66 jss76 jss80" style="color: #000;" id="subtotal">
+                {{ cart.items_subtotal_price| money_with_currency }}
+              </div>
               <div class="jss67 jss76 jss80 jss832">Grátis</div>
               <div class="jss67 jss76 jss80" style="color: #000;" id="total">
                 {{ cart.total_price | money_with_currency }}

@@ -47,10 +47,9 @@
     <div class="page-width">
       <div class="content">
         <ul class="list list-link-external">
-          <li><a class="text" href="/sobre/">Sobre</a></li>
+          <li><a class="text" href="/pages/sobre/">Sobre</a></li>
           <li><a class="text" href="/pages/contact/">Contato</a></li>
-          <li><a class="text" href="/politica-de-vendas/#trocas-e-devolucoes">Trocas e devoluções</a></li>
-          <li><a class="text" href="/politica-de-vendas/">Política de vendas</a></li>
+          <li><a class="text" href="/pages/politica-de-vendas/">Política de vendas</a></li>
         </ul>
 
         <ul class="list list-social">
@@ -68,7 +67,7 @@
     <div class="page-width">
       <div class="wrapper-info">
         <div>
-          <img srcset="https://www.jouse.com.br/static/img/logo/logo_footer.png" alt="Logo Jouse" />
+          <img srcset="{{ 'logo.avif' | asset_url }}" alt="logo {{ shop.name }}" style="max-width: 80px;" />
           <span class="text">
             Copyright ©
             <!-- -->2024<!-- -->
@@ -334,3 +333,4 @@
   }
 }
 {% endschema %}
+ 
