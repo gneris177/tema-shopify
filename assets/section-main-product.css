@@ -2622,7 +2622,7 @@ a.product__text {
   margin: 48px auto;
   display: flex;
   padding: 16px;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   align-items: center;
   border-radius: 12px;
   background-color: #f2f2f2;
