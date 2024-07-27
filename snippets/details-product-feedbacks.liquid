@@ -32,7 +32,12 @@
   qaArray.forEach((qa, index) => {
     const accordionHTML = `
       <div class="Paper-root accordion-root jss183 paper-elevation0">
-          <div class="button-base-root accordion-summary-root jss189" style="margin: 0" role="button" id="button-accordion-qestion-${index}" onclick="toggleAccordionQestion(${index})">
+          <div 
+            class="button-base-root accordion-summary-root jss189" 
+            style="margin: 0" 
+            id="button-accordion-qestion-${index}" 
+            onclick="toggleAccordionQestion(${index})"
+          >
               <div class="accordion-summary-content jss186">
                   <div class="jss41 jss50 jss54">${qa.pergunta}</div>
               </div>
@@ -63,7 +68,7 @@
     accordionContent.classList.toggle('collapse-hidden');
 
     const buttonExpande = document.querySelector('#button-accordion-qestion-' + id);
-    const icon = buttonExpande.querySelector('img.jss74');
+    const icon = buttonExpande.querySelector('img.jss180');
 
     if (accordionContent.classList.contains('collapse-hidden')) {
       icon.style.transform = 'rotateZ(0deg)';
